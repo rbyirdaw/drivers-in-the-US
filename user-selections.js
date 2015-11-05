@@ -133,14 +133,14 @@ function execRequest(mCallback) {
 			var respType = xhr.getResponseHeader("Content-type");
 			
 			if (respType === "application/json") {
-				
+				/*
 				document.getElementById("responseDiv").
 					innerHTML = "";
 				document.getElementById("responseDiv").
 					innerHTML = xhr.responseText;	
 				
 				console.log(JSON.parse(xhr.responseText));				
-				/**/
+				*/
 				respData = JSON.parse(xhr.responseText);
 				formattedData = procRespData(respData);
 				mCallback(formattedData);				
@@ -153,11 +153,13 @@ function execRequest(mCallback) {
 		} //if readyState, status
 	} //onreadystatechange
 	
+	//http required.
 	xhr.open("POST", "http://347apps.com/US-drivers/user-request.php", true);
 	//xhr.open("POST", "user-request.php", true);
+	//Adding content-type creates an error (405)
 	//xhr.setRequestHeader("Content-type", "application/json");		
 	xhr.send(JSON.stringify(filterSet));
-	//xhr.send();
+	
 	
 
 }//execRequest
