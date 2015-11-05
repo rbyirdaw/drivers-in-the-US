@@ -111,7 +111,7 @@ function updateFilter(filter) {
 	
 	var genderSel = ( filterSet.male || filterSet.female );
 
-	console.log(filterSet);
+	//console.log(filterSet);
 		
 	if (genderSel && ageGroupSel) {
 		execRequest(updatePlot);
@@ -147,19 +147,19 @@ function execRequest(mCallback) {
 				
 				
 			} else {
-				alert("Received content-type is "+respType);
+				//alert("Received content-type is "+respType);
+				$("#responseDiv").css("display", "block");
+				$("#responseDiv").html(xhr.responseText);
 			}
 
 		} //if readyState, status
 	} //onreadystatechange
 	
-	//http required.
+	
 	xhr.open("POST", "http://347apps.com/US-drivers/user-request.php", true);
-	//xhr.open("POST", "user-request.php", true);
 	//Adding content-type creates an error (405)
 	//xhr.setRequestHeader("Content-type", "application/json");		
 	xhr.send(JSON.stringify(filterSet));
-	
 	
 
 }//execRequest

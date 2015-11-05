@@ -23,7 +23,8 @@ function initPlot(defData) {
 		dataMaster: [],
 		
 		colorList: d3.scale.ordinal()
-						.range(["#98abc5", "#ff8c00"]),
+						.range(["#f8d584", "#9dc89d"]),
+						
 						
 		barGroupNames: ["male","female"],
 		
@@ -97,7 +98,7 @@ function createAxes() {
 
 			
 	_vis.svg.append("g")
-			.attr("id", "xaxis")
+			.attr("class", "x axis")
 			.attr("transform", "translate(0," + _vis.height + ")")
 			.call(_vis.xAxis)
 			.selectAll("text")
@@ -108,16 +109,16 @@ function createAxes() {
 	
 	
 	_vis.svg.append("g")
-			.attr("id", "yaxis")
+			.attr("class", "y axis")
 			.call(_vis.yAxis)
 			.append("text")
-				.attr("x", "-50")
-				.attr("y", "-50")
+				.attr("x", "-150")
+				.attr("y", "-60")
 				.attr("text-anchor","end")
 				.attr("transform", "rotate(-90)")								
-				.text("----Drivers----")				
-				.attr("fill","black")
-				.attr("font-size","14px");				
+				.text("Number of Drivers")				
+				//.attr("fill","black")
+				//.attr("font-size","36px");				
 	
 }
 
@@ -151,6 +152,33 @@ function createDefPlot() {
 				//.style("stroke", function(d) { return _vis.colorList(d.gender);})
 	
 
+	//Add legends
+	_vis.svg.selectAll(".legend")
+			.data(_vis.barGroupNames)
+			.enter()
+			.append("g")
+			.attr("class", "legend")
+			.attr("transform", function(data, index) {
+				return "translate(0, " + index * 20 + ")";
+			});
+		
+	_vis.svg.selectAll(".legend")
+			.append("rect")
+			.attr("x", _vis.width - 135)
+			.attr("width", 10)
+			.attr("height", 10)
+			.style("fill", _vis.colorList);
+			
+	_vis.svg.selectAll(".legend")
+			.append("text")
+			.attr("x", _vis.width - 120)
+			.attr("y", 9)
+			.attr("text-anchor", "start")
+			.text( function (d) {
+				return d;
+			});
+	
+	//Attache mouse event listeners
 	attachListeners();
 }
 
@@ -167,7 +195,7 @@ function attachListeners() {
 				function(dSub) {
 					return dSub.count;
 				} )
-			) - 15;
+			) - 20;
 			
 			//For states at the end, shift xPosition to the left to avoid cutoff
 			var currStateList = _vis.data.map( function(d) { return d.state; });
@@ -240,7 +268,7 @@ function sortBars(sortOrder) {
 		
 	_vis.x0Scale.domain(_vis.data.map( function(d) { return d.state; } ));
 					
-	_vis.svg.select("#xaxis")
+	_vis.svg.select(".x.axis")
 		.transition()
 		.duration(_vis.transDuration)	
 		.call(_vis.xAxis)
@@ -299,7 +327,7 @@ function updatePlot(updatedData) {
 	
 	_vis.x0Scale.domain(_vis.data.map( function(d) { return d.state; } ));
 					
-	_vis.svg.select("#xaxis")
+	_vis.svg.select(".x.axis")
 		.transition()
 		.duration(_vis.transDuration)
 		.call(_vis.xAxis)
@@ -322,7 +350,7 @@ function updatePlot(updatedData) {
 
 			
 	//Update y axis along with its padding on data change - do transition
-	_vis.svg.select("#yaxis")
+	_vis.svg.select(".y.axis")
 		.transition()
 		.duration(_vis.transDuration)	
 		.call(_vis.yAxis);
