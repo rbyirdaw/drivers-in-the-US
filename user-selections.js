@@ -133,14 +133,14 @@ function execRequest(mCallback) {
 			var respType = xhr.getResponseHeader("Content-type");
 			
 			if (respType === "application/json") {
-				
+				/*
 				document.getElementById("responseDiv").
 					innerHTML = "";
 				document.getElementById("responseDiv").
 					innerHTML = xhr.responseText;	
 				
 				console.log(JSON.parse(xhr.responseText));				
-				/**/
+				*/
 				respData = JSON.parse(xhr.responseText);
 				formattedData = procRespData(respData);
 				mCallback(formattedData);				
