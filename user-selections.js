@@ -153,10 +153,13 @@ function execRequest(mCallback) {
 		} //if readyState, status
 	} //onreadystatechange
 	
-	xhr.open("POST", "347apps.com/US-drivers/user-request.php", true);
+	//http required.
+	xhr.open("POST", "http://347apps.com/US-drivers/user-request.php", true);
 	//xhr.open("POST", "user-request.php", true);
+	//Adding content-type creates an error (405)
 	//xhr.setRequestHeader("Content-type", "application/json");		
 	xhr.send(JSON.stringify(filterSet));
+	
 	
 
 }//execRequest
