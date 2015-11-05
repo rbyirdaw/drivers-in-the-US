@@ -156,8 +156,8 @@ function execRequest(mCallback) {
 	xhr.open("POST", "http://347apps.com/US-drivers/user-request.php", true);
 	//xhr.open("POST", "user-request.php", true);
 	//xhr.setRequestHeader("Content-type", "application/json");		
-	//xhr.send(JSON.stringify(filterSet));
-	xhr.send();
+	xhr.send(JSON.stringify(filterSet));
+	//xhr.send();
 	
 
 }//execRequest
