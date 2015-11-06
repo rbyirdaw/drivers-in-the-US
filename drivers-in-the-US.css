@@ -1,3 +1,58 @@
+.pageHeader {
+	text-align: center;
+	font-size: 36px;
+	font-weight: 700;
+	font-family: Arial, Helvetica;
+}
+
+/******************************************************************************/
+#responseDiv {
+	display: none;
+	border: 1px solid red;
+	width: 60%;
+}
+
+/******************************************************************************/
+input[type="checkbox"] {
+	margin-top: 10px;
+	
+}
+fieldset {
+	margin: 10px;
+}
+.filters {
+	width: 20%;
+	background-color: #fff;
+	float: left;	
+}
+.filters label{
+	display: block;
+}
+
+.filters_and_svg{
+	min-width: 1260px;
+	min-height: 660px;
+	margin: 20px auto 20px auto;	
+}
+.svg_and_controls {
+	float: right;
+}
+.svg-holder{	
+	background-color: #fff;
+}
+/******************************************************************************/
+.axis path,
+.axis line {
+	stroke: black;
+	stroke-width: 2px;
+	fill: none;
+}
+.axis text{
+	font-family: sans-serif;
+	font-size: 12px;			
+	fill: black;
+}
+
 #svg-tooltip-main {
 	text-anchor: start;
 	font-family: Arial;	
@@ -10,47 +65,13 @@
 	font-size: 10px;
 	font-weight: normal;
 }
+.legend {
+	font-family: Arial;
+	font-size: 11px;
+}
 /******************************************************************************/
-#responseDiv {
-	display: inline-block;
-	border: 1px solid red;
-	width: 60%;
-}
-.filters {
-	width: 20%;
-	/*
-	display: inline-block;
-	*/
-	background-color: #ffe;
-	border: red 2px solid;
-	float: left;
-	
-}
-.filters label{
-	display: block;
-}
-
-.filter_and_svg{
-	width: 1260px;
-	height: 550px;
-	margin: 20px auto 20px auto;
-	border: blue 3px dashed;
-	
-}
-.svg-holder{
-	float: right;
-	background-color: #fff;
-	border: green 2px dashed;
-	
-
-}
-svg{
-	
-
-}
-
 .controls{
-	width: 40%;
+	width: 	50%;
 	margin: 20px auto 20px auto;
 }
 input[name=yearSelect] {
@@ -62,7 +83,16 @@ input[name=yearSelect] {
 	
 	margin: 0 auto 0 auto;
 	
-	font-size: 18px;
+	font-size: 28px;
 	font-family: Arial;
 	color: SkyBlue;
+}
+
+/******************************************************************************/
+footer {
+	margin: 100px auto 0 auto;
+	text-align: right;
+	width: 80%;
+	font: 10px Consolas, Arial;
+	
 }
