@@ -1,24 +1,50 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>U.S. drivers by age and gender (1995 to 2011)</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
-		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>		
 
-		<script src="user-selections.js"></script>
-		<script src="drivers-plot.js"></script>
-		<link href="drivers-in-the-US.css" rel="stylesheet">
-	</head>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Drivers-in-the-US : A D3 visualization of number of drivers in the U.S. by age, gender, state and year.">
+
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>		
+
+	<script src="user-selections.js"></script>
+	<script src="drivers-plot.js"></script>
 	
-	<body onload="init()">
-		<header class="pageHeader">
-			Drivers in the U.S.
-		</header>
-		
-		
-		<div class="filters_and_svg">
-			<div class="filters">
+	<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+	<link href="drivers-in-the-US-github.css" rel="stylesheet">	
+	
+	
+    <title>Drivers in the U.S.</title>
+  </head>
+
+  <body onload="init()">
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/rbyirdaw/drivers-in-the-US">View on GitHub</a>
+
+          <h1 id="project_title">Drivers in the U.S.</h1>
+          <h2 id="project_tagline">A D3 visualization of number of drivers in the U.S. by age, gender, state and year.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/rbyirdaw/drivers-in-the-US/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/rbyirdaw/drivers-in-the-US/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" >
+	  
+		<section class="filters_and_svg">
+			<section class="filters">
 				<fieldset>
 					<legend>Gender</legend>
 					<label>
@@ -117,10 +143,10 @@
 					
 				</fieldset>		
 				
-			</div>
+			</section>
 			<section class="svg_and_controls">
 				<section class="controls">
-					<label title="sortLabel" style="display: block;">
+					<label title="sortLabel">
 						Sort driver count by [
 						<input type="radio" name="sortOptions" value="state" checked>
 						State
@@ -130,7 +156,7 @@
 						]
 					</label>
 				</section>			
-				<section class="svg-holder">
+				<section class="svg_holder">
 
 				</section>
 				
@@ -141,16 +167,28 @@
 				</section>
 				
 			</section>
-		</div>
+		</section>
 
-		<footer>
+		<footer class="dataSource">
 			Data from U.S. Department of Transportation 
 			<br>
 			Federal Highway Administration (fhwa.dot.gov)
 		</footer>
 			
-		<div id="responseDiv"> Response goes here.</div>			
-		
-	</body>
+		<div id="responseDiv"> Response goes here.</div>	  
 
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Drivers-in-the-US maintained by <a href="https://github.com/rbyirdaw">rbyirdaw</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
 </html>

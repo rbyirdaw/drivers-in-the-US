@@ -54,7 +54,7 @@ function initPlot(defData) {
 function createSVG() {
 				
 	//Insert svg before range input
-	_vis.svg = d3.select(".svg-holder")
+	_vis.svg = d3.select(".svg_holder")
 				.append("svg")		
 				.attr("width",_vis.width + _vis.margin.left + 
 					_vis.margin.right)
@@ -178,7 +178,7 @@ function createDefPlot() {
 				return d;
 			});
 	
-	//Attache mouse event listeners
+	//Attach mouse event listeners
 	attachListeners();
 }
 
@@ -200,12 +200,14 @@ function attachListeners() {
 			//For states at the end, shift xPosition to the left to avoid cutoff
 			var currStateList = _vis.data.map( function(d) { return d.state; });
 			if ( 
+				(currStateList[45] === d.state) ||
+				(currStateList[46] === d.state) ||				
+				(currStateList[47] === d.state) ||
 				(currStateList[48] === d.state) ||
 				(currStateList[49] === d.state) ||
-				(currStateList[50] === d.state) ||
-				(currStateList[51] === d.state)
+				(currStateList[50] === d.state)				
 			){
-				xPosition -= 70;
+				xPosition -= 90;
 			}
 			_vis.svg.append("text")
 					.attr("x", xPosition)
@@ -214,7 +216,7 @@ function attachListeners() {
 
 					.append("tspan")
 					.attr("x", xPosition)
-					.attr("y", yPosition - 12)
+					.attr("y", yPosition - 15)
 					.attr("id", "svg-tooltip-state")
 				    .text(d.state)
 					
@@ -225,7 +227,7 @@ function attachListeners() {
 					.text("Male drivers: "+d.driversByGender[0].count)
 					.append("tspan")
 					.attr("x", xPosition)
-					.attr("y", yPosition + 10)
+					.attr("y", yPosition + 12)
 					.attr("id", "svg-tooltip-count")
 					.text("Female drivers: "+d.driversByGender[1].count);					
 					
