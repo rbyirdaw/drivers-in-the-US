@@ -19,25 +19,35 @@ input[type="checkbox"] {
 }
 fieldset {
 	margin: 10px;
+	padding-left: 5px;
+	border: 2px solid black;	
+}
+legend {
+	font-weight: bold;
+	-webkit-padding-start: 4px;
+	-webkit-padding-end: 4px;
 }
 .filters {
-	width: 20%;
+	display: inline-block;
+	width: 175px;
 	background-color: #fff;
-	float: left;	
+	margin-right: 50px;
+	
+	vertical-align: top;
 }
 .filters label{
 	display: block;
 }
 
 .filters_and_svg{
-	min-width: 1260px;
-	min-height: 660px;
-	margin: 20px auto 20px auto;	
+	width: 1190px;
+	margin: 20px auto;
 }
 .svg_and_controls {
-	float: right;
+	display: inline-block;
+	width: 960px;	
 }
-.svg-holder{	
+.svg_holder{	
 	background-color: #fff;
 }
 /******************************************************************************/
@@ -58,11 +68,11 @@ fieldset {
 	font-family: Arial;	
 }
 #svg-tooltip-state {
-	font-size: 12px;
+	font-size: 16px;
 	font-weight: bold;
 }
 #svg-tooltip-count {
-	font-size: 10px;
+	font-size: 12px;
 	font-weight: normal;
 }
 .legend {
@@ -88,9 +98,13 @@ input[name=yearSelect] {
 	color: SkyBlue;
 }
 
+label[title="sortLabel"] {
+	font-size: 18px;
+}
+
 /******************************************************************************/
-footer {
-	margin: 100px auto 0 auto;
+footer.dataSource {
+	margin: 40px auto 20px auto;
 	text-align: right;
 	width: 80%;
 	font: 10px Consolas, Arial;

@@ -6,19 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="Drivers-in-the-US : A D3 visualization of number of drivers in the U.S. by age, gender, state and year.">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Drivers-in-the-US</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>		
+
+	<script src="user-selections.js"></script>
+	<script src="drivers-plot.js"></script>
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+	<link href="drivers-in-the-US-github.css" rel="stylesheet">	
+	
+	
+    <title>Drivers in the U.S.</title>
   </head>
 
-  <body>
+  <body onload="init()">
 
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/rbyirdaw/drivers-in-the-US">View on GitHub</a>
 
-          <h1 id="project_title">Drivers-in-the-US</h1>
+          <h1 id="project_title">Drivers in the U.S.</h1>
           <h2 id="project_tagline">A D3 visualization of number of drivers in the U.S. by age, gender, state and year.</h2>
 
             <section id="downloads">
@@ -30,11 +41,142 @@
 
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a id="drivers-in-the-us" class="anchor" href="#drivers-in-the-us" aria-hidden="true"><span class="octicon octicon-link"></span></a>drivers-in-the-US</h1>
+      <section id="main_content" >
+	  
+		<section class="filters_and_svg">
+			<section class="filters">
+				<fieldset>
+					<legend>Gender</legend>
+					<label>
+						<input type="checkbox" name="male" value="male" checked>
+						Male drivers
+					</label>
+					<label>
+						<input type="checkbox" name="female" value="female" checked>
+						Female drivers
+					</label>
+				</fieldset>
+				
+				<fieldset>
+					<legend>Age Group</legend>
+					<label>
+						<input type="checkbox" name="19_and_under" value="19_and_under"
+							>
+						19 and under
+					</label>
+					<label>
+						<input type="checkbox" name="20_24" value="20_24"
+							>
+						20 to 24
+					</label>
+					<label>
+						<input type="checkbox" name="25_29" value="25_29" 
+							>
+						25 to 29
+					</label>					
+					<label>
+						<input type="checkbox" name="30_34" value="30_34"
+							>
+						30 to 34
+					</label>
+					<label>
+						<input type="checkbox" name="35_39" value="35_39"
+							>
+						35 to 39
+					</label>
+					<label>
+						<input type="checkbox" name="40_44" value="40_44"
+							>
+						40 to 44
+					</label>					
+					<label>
+						<input type="checkbox" name="45_49" value="45_49"
+							>
+						45 to 49
+					</label>
+					<label>
+						<input type="checkbox" name="50_54" value="50_54" 
+							>
+						50 to 54
+					</label>					
+					<label>
+						<input type="checkbox" name="55_59" value="55_59"
+							>
+						55 to 59
+					</label>
+					<label>
+						<input type="checkbox" name="60_64" value="60_64"
+							>
+						60 to 64
+					</label>
+					<label>
+						<input type="checkbox" name="65_69" value="65_69"
+							>
+						65 to 69
+					</label>				
+					<label>
+						<input type="checkbox" name="70_74" value="70_74"
+							>
+						70 to 74
+					</label>
+					<label>
+						<input type="checkbox" name="75_79" value="75_79"
+							>
+						75 to 79
+					</label>
+					<label>
+						<input type="checkbox" name="80_84" value="80_84"
+							>
+						80 to 84
+					</label>
+					<label>
+						<input type="checkbox" name="85_and_over" 
+							value="85_and_over" >
+						85 and over
+					</label>
+					<label>
+						<input type="checkbox" name="select_all" 
+							value="select_all" >
+						Select all
+					</label>
+					
+					
+				</fieldset>		
+				
+			</section>
+			<section class="svg_and_controls">
+				<section class="controls">
+					<label title="sortLabel">
+						Sort driver count by [
+						<input type="radio" name="sortOptions" value="state" checked>
+						State
+						<input type="radio" name="sortOptions" value="ascending">Ascending
+							
+						<input type="radio" name="sortOptions" value="descending">Descending
+						]
+					</label>
+				</section>			
+				<section class="svg_holder">
 
-<p>A D3 visualization of number of drivers in the U.S. by age, gender, state and year.</p>
+				</section>
+				
+				<section class="controls">
+					<div class="yearDisplay">2014</div>
+					<input type="range" name="yearSelect" min="1995" max="2011" step="1" 
+						value="2014">
+				</section>
+				
+			</section>
+		</section>
+
+		<footer class="dataSource">
+			Data from U.S. Department of Transportation 
+			<br>
+			Federal Highway Administration (fhwa.dot.gov)
+		</footer>
+			
+		<div id="responseDiv"> Response goes here.</div>	  
+
       </section>
     </div>
 
