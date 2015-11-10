@@ -14,8 +14,7 @@
 
 /******************************************************************************/
 input[type="checkbox"] {
-	margin-top: 10px;
-	
+	margin-top: 10px;	
 }
 fieldset {
 	margin: 10px;
@@ -26,6 +25,12 @@ legend {
 	font-weight: bold;
 	-webkit-padding-start: 4px;
 	-webkit-padding-end: 4px;
+		
+	-moz-padding-start: 4px;
+	-moz-padding-end: 4px;	
+	
+	-ms-padding-start: 4px;
+	-ms-padding-end: 4px;		
 }
 .filters {
 	display: inline-block;
