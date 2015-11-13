@@ -403,8 +403,3 @@ function calcPaddingTop() {
 	);
 }
 
-//==============================================================================
-function incomeStrToNum(incomeStr) {
-	return +incomeStr.replace(',','');
-	
-}
