@@ -2,7 +2,7 @@
 var filterSet ={};
 
 function init() {
-
+	
 	filterSet = {
 	  year: 1999,
 	  male: true,
@@ -23,43 +23,43 @@ function init() {
 		  "75_79": false,
 		  "80_84": false,
 		  "85_and_over": false
-	  }
+	  }  
 	};
-
+	
 	$("input[name='yearSelect']").val(filterSet.year);
 	$(".yearDisplay").html(filterSet.year);
 	$("input[name='19_and_under']").prop("checked", true);
-
+	
 	//attach onchange listener to age group checkboxes
 	$("input[type='checkbox']").on("change", function() {
 		updateFilter(this);
 	});
 
-
-
+	
+	
 	$("input[name='sortOptions']")
 		.on("change", function() {
 			sortBars(this.value);
 		});
-
+		
 	$("input[name='yearSelect']")
 		.on("change", function() {
 			filterSet.year = this.value;
 			$(".yearDisplay").html(this.value);
 			console.log(filterSet.year);
-
+			
 			execRequest(updatePlot);
-		});
-
+		});	
+	
 	execRequest(initPlot);
-
+	
 }
 
 //==============================================================================
 function updateFilter(filter) {
-
+	
 	var ageGroupSel = undefined;
-
+	
 	if ( (filter.name === "male") || (filter.name === "female") ) {
 		if (filter.checked) {
 			filterSet[filter.name] = true;
@@ -67,7 +67,7 @@ function updateFilter(filter) {
 			filterSet[filter.name] = false;
 		}
 	} else if (filter.name === "select_all") {
-
+		
 		if (!filter.checked) {
 			ageGroupSel = false;
 			//Uncheck age groups that are currently checked
@@ -86,17 +86,17 @@ function updateFilter(filter) {
 					$("input[name='"+ageGroup+"']").prop("checked", true);
 				}
 			}
-		}
-
+		}		
+	
 	} else {
 		if (filter.checked) {
 			filterSet.ageGroups[filter.name] = true;
 			ageGroupSel = true;
 		} else {
-			filterSet.ageGroups[filter.name] = false;
+			filterSet.ageGroups[filter.name] = false;		
 		}
 	}
-
+	
 	if (ageGroupSel === undefined) {
 		ageGroupSel = false;
 		var	ageGroupKeys = Object.keys(filterSet.ageGroups),
@@ -106,13 +106,13 @@ function updateFilter(filter) {
 				ageGroupSel = true;
 			}
 			i++;
-		}
+		}		
 	}
-
+	
 	var genderSel = ( filterSet.male || filterSet.female );
 
 	//console.log(filterSet);
-
+		
 	if (genderSel && ageGroupSel) {
 		execRequest(updatePlot);
 	} else {
@@ -121,31 +121,31 @@ function updateFilter(filter) {
 }
 
 //==============================================================================
-function execRequest(mCallback) {
-
+function execRequest(mCallback) {	
+	
 	var respData = undefined;
 	var xhr = new XMLHttpRequest();
-
+	
 	xhr.onreadystatechange = function() {
-
+		
 		if ( (xhr.readyState === 4) && (xhr.status === 200) ) {
-
+			
 			var respType = xhr.getResponseHeader("Content-type");
-
+			
 			if (respType === "application/json") {
 				/*
 				document.getElementById("responseDiv").
 					innerHTML = "";
 				document.getElementById("responseDiv").
-					innerHTML = xhr.responseText;
-
-				console.log(JSON.parse(xhr.responseText));
+					innerHTML = xhr.responseText;	
+				
+				console.log(JSON.parse(xhr.responseText));				
 				*/
 				respData = JSON.parse(xhr.responseText);
 				formattedData = procRespData(respData);
-				mCallback(formattedData);
-
-
+				mCallback(formattedData);				
+				
+				
 			} else {
 				//alert("Received content-type is "+respType);
 				$("#responseDiv").css("display", "block");
@@ -154,44 +154,44 @@ function execRequest(mCallback) {
 
 		} //if readyState, status
 	} //onreadystatechange
-
-
-	xhr.open("POST", "http://347apps.com/US-drivers/user-request.php", true);
+	
+	
+	xhr.open("POST", "//347apps.com/US-drivers/user-request.php", true);
 	//Adding content-type creates an error (405)
-	//xhr.setRequestHeader("Content-type", "application/json");
+	//xhr.setRequestHeader("Content-type", "application/json");		
 	xhr.send(JSON.stringify(filterSet));
-
+	
 
 }//execRequest
 
 //==============================================================================
 function procRespData(respData) {
 	/*
-	 * AJAX request returns a 2 element object array with JSON objects, for
+	 * AJAX request returns a 2 element object array with JSON objects, for 
 	 * male and female driver data.
 	 * D3 plot needs array of objects with x-axis field state, and y-axis field
 	 * count.
 	 */
-
+	 
 	 var formattedData = [];
-	 var maleDriversData =
+	 var maleDriversData = 
 		respData["maleDrivers"] == null ? [] : respData["maleDrivers"];
-	 var femaleDriversData =
+	 var femaleDriversData = 
 		respData["femaleDrivers"] == null ? [] : respData["femaleDrivers"];
-
+	 
 	 var statesList = [];
 	 var stateIndex = undefined;
-
+	 
 	 //Process Male driver data
 	 for (i = 0; i < maleDriversData.length; i++ ) {
 		 var tempTotalCount = 0;
-		 for (countIndex = 0;
+		 for (countIndex = 0; 
 			countIndex < maleDriversData[i].age_group_count.length;
 			countIndex++ ) {
 				tempTotalCount += (+maleDriversData[i].
 					age_group_count[countIndex].count);
 		}
-
+		
 		formattedData[i] = {
 			state: maleDriversData[i].state,
 			count: tempTotalCount,
@@ -199,7 +199,7 @@ function procRespData(respData) {
 				{"gender": "male", "count": tempTotalCount}
 			]
 		}
-
+		
 		//if female driver data does not exist, set count to 0 here.
 		if (femaleDriversData.length === 0) {
 			formattedData[i].driversByGender.push(
@@ -209,18 +209,18 @@ function procRespData(respData) {
 		if (statesList.indexOf(maleDriversData[i].state) == -1)
 			statesList.push(maleDriversData[i].state);
 	 }
-
-
+	 
+	 
 	 //Process female driver data
 	 for (i = 0; i < femaleDriversData.length; i++ ) {
 		 var tempTotalCount = 0;
-		 for (countIndex = 0;
+		 for (countIndex = 0; 
 			countIndex < femaleDriversData[i].age_group_count.length;
 			countIndex++ ) {
 				tempTotalCount += (+femaleDriversData[i].
 					age_group_count[countIndex].count);
 		}
-
+		
 		//Must check if state data exists already
 		stateIndex = statesList.indexOf(femaleDriversData[i].state);
 		if (stateIndex != -1) {
@@ -237,14 +237,46 @@ function procRespData(respData) {
 					//data for male drivers does not exist - set to 0
 					{"gender": "male", "count": 0},
 					{"gender": "female", "count": tempTotalCount}
-				]
+				]				
 			}
 		}
 	 }
-
-
-
+	 
+	 
+	 
 	 return formattedData;
-
-
+	 
+	 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
