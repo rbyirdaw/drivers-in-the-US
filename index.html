@@ -8,17 +8,17 @@
 
 
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
-		
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>		
+	<script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
 
-	<script src="user-selections.js"></script>
-	<script src="drivers-plot.js"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	<!--script src="user-selections.js"></script>
+	<script src="drivers-plot.js"></script-->
+
 	<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-	<link href="drivers-in-the-US-github.css" rel="stylesheet">	
-	
-	
+	<link href="drivers-in-the-US-github.css" rel="stylesheet">
+
+
     <title>Drivers in the U.S.</title>
   </head>
 
@@ -42,7 +42,7 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" >
-	  
+
 		<section class="filters_and_svg">
 			<section class="filters">
 				<fieldset>
@@ -56,7 +56,7 @@
 						Female drivers
 					</label>
 				</fieldset>
-				
+
 				<fieldset>
 					<legend>Age Group</legend>
 					<label>
@@ -70,10 +70,10 @@
 						20 to 24
 					</label>
 					<label>
-						<input type="checkbox" name="25_29" value="25_29" 
+						<input type="checkbox" name="25_29" value="25_29"
 							>
 						25 to 29
-					</label>					
+					</label>
 					<label>
 						<input type="checkbox" name="30_34" value="30_34"
 							>
@@ -88,17 +88,17 @@
 						<input type="checkbox" name="40_44" value="40_44"
 							>
 						40 to 44
-					</label>					
+					</label>
 					<label>
 						<input type="checkbox" name="45_49" value="45_49"
 							>
 						45 to 49
 					</label>
 					<label>
-						<input type="checkbox" name="50_54" value="50_54" 
+						<input type="checkbox" name="50_54" value="50_54"
 							>
 						50 to 54
-					</label>					
+					</label>
 					<label>
 						<input type="checkbox" name="55_59" value="55_59"
 							>
@@ -113,7 +113,7 @@
 						<input type="checkbox" name="65_69" value="65_69"
 							>
 						65 to 69
-					</label>				
+					</label>
 					<label>
 						<input type="checkbox" name="70_74" value="70_74"
 							>
@@ -130,19 +130,19 @@
 						80 to 84
 					</label>
 					<label>
-						<input type="checkbox" name="85_and_over" 
+						<input type="checkbox" name="85_and_over"
 							value="85_and_over" >
 						85 and over
 					</label>
 					<label>
-						<input type="checkbox" name="select_all" 
+						<input type="checkbox" name="select_all"
 							value="select_all" >
 						Select all
 					</label>
-					
-					
-				</fieldset>		
-				
+
+
+				</fieldset>
+
 			</section>
 			<section class="svg_and_controls">
 				<section class="controls">
@@ -151,31 +151,31 @@
 						<input type="radio" name="sortOptions" value="state" checked>
 						State
 						<input type="radio" name="sortOptions" value="ascending">Ascending
-							
+
 						<input type="radio" name="sortOptions" value="descending">Descending
 						]
 					</label>
-				</section>			
+				</section>
 				<section class="svg_holder">
 
 				</section>
-				
+
 				<section class="controls">
 					<div class="yearDisplay">Year</div>
-					<input type="range" name="yearSelect" min="1995" max="2014" step="1" 
+					<input type="range" name="yearSelect" min="1995" max="2014" step="1"
 						value="Year">
 				</section>
-				
+
 			</section>
 		</section>
 
 		<footer class="dataSource">
-			Data from U.S. Department of Transportation 
+			Data from U.S. Department of Transportation
 			<br>
 			Federal Highway Administration (fhwa.dot.gov)
 		</footer>
-			
-		<div id="responseDiv"> Response goes here.</div>	  
+
+		<div id="responseDiv"> Response goes here.</div>
 
       </section>
     </div>
@@ -188,7 +188,9 @@
       </footer>
     </div>
 
-    
+
+    <script src="usDriversModel.js"></script>
+    <script src="usDriversApp.js"></script>
 
   </body>
 </html>
