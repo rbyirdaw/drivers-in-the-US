@@ -11,7 +11,7 @@ describe("usDriversModel", function() {
 
     spyOn(model, 'setData').and.callThrough();
 
-    model.read(1999, function(d) {
+    model.read(year, function(d) {
       model.setData(d);
       done();
     });
@@ -24,4 +24,21 @@ describe("usDriversModel", function() {
   it("should return current data", function() {
     expect(model.getData()).not.toBeUndefined();
   });
+  describe("the returned data", function() {
+    beforeEach(function() {
+      var currentData = model.getData();
+    });
+
+    it("should contain an male driver data", function() {
+      var currentData = model.getData();
+      expect(currentData[year].maleDrivers).not.toBeUndefined();
+    });
+    it("should contain an female driver data", function() {
+      var currentData = model.getData();
+      expect(currentData[year].femaleDrivers).not.toBeUndefined();
+    });
+
+  })
+
+
 });

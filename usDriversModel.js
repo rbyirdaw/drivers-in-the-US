@@ -2,7 +2,7 @@
 
   function USdriversModel(storage) {
     this._storage = storage;
-    this._data = undefined;
+    this._data;
   }
   //============================================================================
   USdriversModel.prototype.read = function(year, callback) {
