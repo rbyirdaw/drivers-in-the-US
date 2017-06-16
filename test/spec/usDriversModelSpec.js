@@ -38,7 +38,11 @@ describe("usDriversModel", function() {
       expect(currentData[year].femaleDrivers).not.toBeUndefined();
     });
 
-  })
+  });
+
+  describe("", function() {
+
+  });
 
 
 });
