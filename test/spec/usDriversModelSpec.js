@@ -29,20 +29,15 @@ describe("usDriversModel", function() {
       var currentData = model.getData();
     });
 
-    it("should contain an male driver data", function() {
+    it("should contain male driver data", function() {
       var currentData = model.getData();
       expect(currentData[year].maleDrivers).not.toBeUndefined();
     });
-    it("should contain an female driver data", function() {
+    it("should contain female driver data", function() {
       var currentData = model.getData();
       expect(currentData[year].femaleDrivers).not.toBeUndefined();
     });
 
   });
-
-  describe("", function() {
-
-  });
-
 
 });
