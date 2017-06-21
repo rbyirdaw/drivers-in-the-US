@@ -31,7 +31,7 @@ describe("usDriversModel", function() {
 
     it("should contain male driver data", function() {
       var currentData = model.getData();
-      expect(currentData[year].maleDrivers).not.toBeUndefined();
+      expect(currentData.maleDrivers).not.toBeUndefined();
     });
     it("should contain female driver data", function() {
       var currentData = model.getData();

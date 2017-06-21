@@ -5,46 +5,41 @@ describe ("USdriversController", function() {
       view = {},
       controller = new window.usDriversApp.Controller(model, view);
 
-  beforeEach(function() {
-    model.read(1999, model.setData);
-
-  });
-
   describe("when year is selected,", function() {
-    var year = 2000;
+    var year = 1999;
+
     beforeEach(function() {
       spyOn(model, 'read');
-      spyOn(model, 'setData');
-    });
-    it("should retrieve data for selected year", function() {
       controller.update({year: year});
+    });
+
+    it("should retrieve data for selected year", function() {
       expect(model.read).toHaveBeenCalled();
     });
-    it("should set retrieved data as current data", function() {
-      var currentData = model.getData();
-      controller.update({year: year});
-      var newData = model.getData();
 
-      expect(currentData.maleDrivers[0].age_group_count[0].count)
-        .not.toEqual(newData.maleDrivers[0].age_group_count[0].count);
+  });
+
+  describe("when age group is selected,", function() {
+    /*
+    beforeEach(function() {
+      controller.update({ageGroup: "20_24"});
+    });
+    */
+  });
+
+  describe("when gender is selected", function() {
+    it("should set corresponding flag", function() {
+      controller.update({showMaleDrivers: true});
+      expect(controller.maleDrivers.show).toEqual(true);
     });
   });
 
-  describe("when age group is selected", function() {
-    var ageGroups = {
-        "20_24": true,
-        "45_49": false
-      };
+  describe("when gender is de-selected", function() {
+    it("should un-set corresponding flag", function() {
+      controller.update({showMaleDrivers: false});
+      expect(controller.maleDrivers.show).toEqual(false);
+    });
+  });
 
-    beforeEach(function() {
-      spyOn(model, 'getData');
-      spyOn(controller, 'filterData');
-    });
-    it("should update current data selection", function() {
-      controller.update({ageGroups: ageGroups});
-      expect(model.getData).toHaveBeenCalled();
-      expect(controller.filterData).toHaveBeenCalled();
-    });
-  })
 
 });

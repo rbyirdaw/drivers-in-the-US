@@ -21,7 +21,7 @@
           driverData = JSON.parse(xhr.responseText);
           //console.log("Data received OK: "+driverData[1999].maleDrivers);
 
-          callback(driverData);
+          callback(driverData[year]);
 
         }
 
