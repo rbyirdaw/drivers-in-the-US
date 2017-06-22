@@ -21,21 +21,22 @@
         self.model.setData(d);
       });
 
-    } else if (updateObj.hasOwnProperty('ageGroups')) {
+    } else if (updateObj.hasOwnProperty('ageGroup')) {
       for (ageGroup in updateObj.ageGroups) {
         console.log("ageGroup is "+ageGroup);
       }
       var currentData = this.model.getData();
-      this.filterData(currentData)
+      this.getAgeGroupCounts();
 
     } else if (updateObj.hasOwnProperty('showMaleDrivers')) {
       this.maleDrivers.show = updateObj.showMaleDrivers;
     }
   };
 
-  USdriversController.prototype.filterData = function(data) {
+  USdriversController.prototype.getAgeGroupCounts = function() {
 
   };
+
 
 
   window.usDriversApp = usDriversApp || {};

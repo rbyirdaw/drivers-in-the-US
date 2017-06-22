@@ -19,13 +19,6 @@ describe ("USdriversController", function() {
 
   });
 
-  describe("when age group is selected,", function() {
-    /*
-    beforeEach(function() {
-      controller.update({ageGroup: "20_24"});
-    });
-    */
-  });
 
   describe("when gender is selected", function() {
     it("should set corresponding flag", function() {
@@ -39,6 +32,22 @@ describe ("USdriversController", function() {
       controller.update({showMaleDrivers: false});
       expect(controller.maleDrivers.show).toEqual(false);
     });
+  });
+
+  describe("when age group is selected,", function() {
+
+    describe("and male driver count is shown,", function() {
+      beforeEach(function() {
+        spyOn(controller, 'getAgeGroupCounts');
+        spyOn(controller, 'updateDriverTotals');
+      });
+      it("should add age group's count to total", function() {
+        controller.update({ageGroup: "20_24", show: true});
+        expect(controller.getAgeGroupCounts).toHaveBeenCalled();
+        expect(controller.updateDriverTotals).toHaveBeenCalled();
+      })
+    })
+
   });
 
 
