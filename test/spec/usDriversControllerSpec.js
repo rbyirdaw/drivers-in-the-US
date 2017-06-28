@@ -56,7 +56,7 @@ describe ("USdriversController", function() {
       });
     });
     describe("and male driver count is shown,", function() {
-      var ageGroupObj = {ageGroup: "20_24", show: true};
+      var ageGroupObj = {ageGroup: "19_and_under", show: true};
 
       it("should retrieve counts for selected age group", function() {
         var currData = controller.model.getData(),
