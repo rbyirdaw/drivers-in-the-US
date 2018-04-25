@@ -1,10 +1,11 @@
 
-var filterSet ={};
+var filterSet ={},
+		data;
 
 function init() {
 	
 	filterSet = {
-	  year: 1999,
+	  year: 1996,
 	  male: true,
 	  female: true,
 	  ageGroups: {
@@ -115,7 +116,9 @@ function updateFilter(filter) {
 	//console.log(filterSet);
 		
 	if (genderSel && ageGroupSel) {
-		execRequest(updatePlot);
+		//execRequest(updatePlot);
+		var filteredData = procRespData(data);
+		updatePlot(filteredData);
 	} else {
 		clearPlot();
 	}
@@ -142,8 +145,8 @@ function execRequest(mCallback) {
 				
 				console.log(JSON.parse(xhr.responseText));				
 				*/
-				respData = JSON.parse(xhr.responseText);
-				formattedData = procRespData(respData);
+				data = JSON.parse(xhr.responseText);
+				formattedData = procRespData(data);
 				mCallback(formattedData);				
 				
 				
@@ -161,7 +164,7 @@ function execRequest(mCallback) {
 	//Adding content-type creates an error (405)
 	//xhr.setRequestHeader("Content-type", "application/json");		
 	//xhr.send(JSON.stringify(filterSet));
-	xhr.open("GET", "data/1999-driver-count.json", true);
+	xhr.open("GET", "data/" + filterSet.year + "-driver-count.json", true);
 	xhr.send();
 	
 
@@ -178,21 +181,28 @@ function procRespData(respData) {
 	 
 	 var formattedData = [];
 	 var maleDriversData = 
-		respData["maleDrivers"] == null ? [] : respData["maleDrivers"];
+		//respData["maleDrivers"] == null ? [] : respData["maleDrivers"];
+		filterSet.male ? respData["maleDrivers"] : [];
 	 var femaleDriversData = 
-		respData["femaleDrivers"] == null ? [] : respData["femaleDrivers"];
-	 
+		//respData["femaleDrivers"] == null ? [] : respData["femaleDrivers"];
+		filterSet.female ? respData["femaleDrivers"] : [];
+
 	 var statesList = [];
 	 var stateIndex = undefined;
 	 
+	 var ageGroupKeys = Object.keys(filterSet.ageGroups);
+
 	 //Process Male driver data
 	 for (i = 0; i < maleDriversData.length; i++ ) {
 		 var tempTotalCount = 0;
 		 for (countIndex = 0; 
 			countIndex < maleDriversData[i].age_group_count.length;
 			countIndex++ ) {
-				tempTotalCount += (+maleDriversData[i].
-					age_group_count[countIndex].count);
+				
+				if (filterSet.ageGroups[ageGroupKeys[countIndex	]]) {
+					tempTotalCount += (+maleDriversData[i].
+						age_group_count[countIndex].count);
+				}
 		}
 		
 		formattedData[i] = {
@@ -220,8 +230,10 @@ function procRespData(respData) {
 		 for (countIndex = 0; 
 			countIndex < femaleDriversData[i].age_group_count.length;
 			countIndex++ ) {
-				tempTotalCount += (+femaleDriversData[i].
-					age_group_count[countIndex].count);
+				if (filterSet.ageGroups[ageGroupKeys[countIndex	]]) {
+					tempTotalCount += (+femaleDriversData[i].
+						age_group_count[countIndex].count);
+				}
 		}
 		
 		//Must check if state data exists already
